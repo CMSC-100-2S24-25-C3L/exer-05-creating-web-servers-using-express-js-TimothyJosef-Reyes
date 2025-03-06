@@ -24,12 +24,12 @@ needle.post(
     }
 );
 
-// needle.get('http://localhost:3000/find-by-isbn-author?isbn=978-0-7475-3269-9&author=J.K+Rowling', // can be an object or a string
-//     (err, res) => {
-//     // console.log(res.body);
-// });
+needle.get('http://localhost:3000/find-by-isbn-author?isbn=978-0-7475-3269-9&author=J.K+Rowling', // can be an object or a string
+    (err, res) => {
+    // console.log(res.body);
+});
 
-// needle.get('http://localhost:3000/find-by-author?author=J.K+Rowling', // can be an object or a string
-//     (err, res) => {
-//     // console.log(res.body);
-// });
+needle.get('http://localhost:3000/find-by-author?author=J.K+Rowling', // can be an object or a string
+    (err, res) => {
+    // console.log(res.body);
+});
