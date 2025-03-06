@@ -7,35 +7,53 @@ app.use(express.urlencoded({extended: false}));
 
 app.get('/find-by-isbn-author', (req, res) => {
     const {isbn, author} = req.query;
-    console.log(req.query)
+    
     fs.readFile('books.txt', 'utf8', function read(err, data) {
         if (err) {
           console.error(err);
           return;
         }
 
-        let parts = data.split(',');
-        
-        if (parts[1] == isbn || [parts[2]] == author){
-            console.log(data);
+        let lines = data.split('\n');
+        let found_books = [];
+
+        for (const line of lines) {
+            if (line === '') continue; // Skip empty lines
+
+            const [line_book_name, line_isbn, line_author, line_year_published] = line.split(',');
+
+            if(isbn == line_isbn && author == line_author){
+                found_books.push(line);
+            }
         }
+
+        res.send(found_books);
     });
 });
 
 app.get('/find-by-author', (req, res) => {
     const {author} = req.query;
-    console.log(req.query)
+
     fs.readFile('books.txt', 'utf8', function read(err, data) {
         if (err) {
           console.error(err);
           return;
         }
 
-        let parts = data.split(',');
-        
-        if ([parts[2]] == author){
-            console.log(data);
+        let lines = data.split('\n');
+        let found_books = [];
+
+        for (const line of lines) {
+            if (line === '') continue; // Skip empty lines
+
+            const [line_book_name, line_isbn, line_author, line_year_published] = line.split(',');
+
+            if(author == line_author){
+                found_books.push(line);
+            }
         }
+
+        res.send(found_books);
     });
 });
 
