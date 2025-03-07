@@ -94,7 +94,7 @@ app.post('/add-book', (req, res) => { // function to add books to the books.txt
     }
 
     if (!fs.existsSync('books.txt')) { // just places a book into books.txt if the file does not exist yet
-        fs.appendFile('books.txt', book_info, function (err) {
+        return fs.appendFile('books.txt', book_info, function (err) {
             if (err) {
                 console.error(err);
                 return res.status(500).send({ success: false });
@@ -142,6 +142,3 @@ app.post('/add-book', (req, res) => { // function to add books to the books.txt
 app.listen(3000, () => { 
     console.log('Server started at port 3000')
 });
-
-
-
